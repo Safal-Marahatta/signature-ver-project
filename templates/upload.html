@@ -6,16 +6,67 @@
 ">
 
     <head>
-        <title>Signature Recogintion</title>
+        <title>Signature Verification Website</title>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <style>
+            /* Center the loader */
+            #loader {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              z-index: 1;
+              width: 50px;
+              height: 50px;
+              margin: -90px 0 0 -90px;
+              border: 16px solid #f3f3f3;
+              border-radius: 50%;
+              border-top: 16px solid gray;
+              -webkit-animation: spin 2s linear infinite;
+              animation: spin 2s linear infinite;
+            }
+            
+            @-webkit-keyframes spin {
+              0% { -webkit-transform: rotate(0deg); }
+              100% { -webkit-transform: rotate(360deg); }
+            }
+            
+            @keyframes spin {
+              28% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+            
+            /* Add animation to "page content" */
+            .animate-bottom {
+              position: relative;
+              -webkit-animation-name: animatebottom;
+              -webkit-animation-duration: 1s;
+              animation-name: animatebottom;
+              animation-duration: 1s
+            }
+            
+            @-webkit-keyframes animatebottom {
+              from { bottom:-100px; opacity:0 } 
+              to { bottom:0px; opacity:1 }
+            }
+            
+            @keyframes animatebottom { 
+              from{ bottom:-100px; opacity:0 } 
+              to{ bottom:0; opacity:1 }
+            }
+            
+            #myDiv {
+              display: none;
+              text-align: center;
+            }
+        </style>
     </head>
     
-    <body>   
-        <center>
-        <!-- <center style="background-image: url('../static/background.jpg');
+ <body onload="myFunction()" style="margin:0;">
+        <center style="background-image: url('../static/background.jpg');
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -24,63 +75,96 @@
         position: absolute;
         top:50%;
         left:50%;
-        transform:translate(-50%,-50%)"> -->
+        transform:translate(-50%,-50%)">
+
+
+
+
+                    {% include 'navbar.html' %}
+                    <div id="loader"></div>
+                    <div style="display:none;" id="myDiv" class="animate-bottom">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <!-- <img src="static 'background.jpg" alt=""> -->
+                        <!-- <img src= class="card-img-top" alt="..."> -->
+                        
+                        <div class="card2">
+                            <form method="post" enctype="multipart/form-data">
+                                <style>
+                                    form{
+                                        
+                                        width: 75%;
+                                        height: 100%;
+                                         display: flex;
+                                        justify-content: center;
+                                        flex-direction: column;
+                                        align-items: center;
+                                        ;                               }
+                                </style>
+                                {% csrf_token %}
+                                <br>
+                                <!-- <div class="container" style="color: white;
+                                width: 80vh;
+                                transform: translatey(-30%);
+                                transform: translatex(-20%);
+                                height: 50%;"> -->
+                                <div class="customer"><label for="CustomerID" style="color: white;
+                                text-align: left;
+                                font-family:'Poppins',sans-serif;;"><strong> Customer ID:</strong></label> <input type="text" id="usr", name= "cid"></div>
+                                <div class="upload_img"><label for="Upload image" style="color: white; font-family:'Poppins',sans-serif;"><strong>Upload image:</strong></label><input name="filePath" type="file" accept=".jpeg,.jpg,.png"/>
+                                </div>
+                                </br>
+                                <img src="{{ file_url }}" alt="">
+                                
+                                    <!-- {{ file_url }}
+                                    <br></br> -->
+                                    {% comment %} {{ key1 }} {% endcomment %}
+                                  
+                                    {{ key1 }}
+                                    {{ key2 }}
+                                <input class="sub" type="submit" onclick="myFunction()" value="check"/>
+                            </form>
+                        </div>
+                            
+                            <br>
+                            <br>
+                            
+                    </div>
+                        
+                    </center> 
+                    </div>
+
+                    <script>
+                    var myVar;
+s
+                    function myFunction() {
+                        myVar = setTimeout(showPage, 1000);
+                    }
+                    
+                    function showPage() {
+                    document.getElementById("loader").style.display = "none";
+                    document.getElementById("myDiv").style.display = "block";
+                    }
+                    </script>
+
+
+
             <!--<div class="head-wrap">-->
                 <!--
                     <h1>Signature Recogonition</h1>
                 </div> -->
-                {% include 'navbar.html' %}
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <!-- <img src="static 'background.jpg" alt=""> -->
-                <!-- <img src= class="card-img-top" alt="..."> -->
-                
-                <div class="card2">
-                    <form method="post" enctype="multipart/form-data">
-                        <style>
-                            form{
-                                
-                                width: 50%;
-                                height: 75%;
-                                 display: flex;
-                                /* justify-content: space-around; */
-                                flex-direction: column;
-                                align-items: center; 
-                            }
-                        </style>
-                        {% csrf_token %}
-                        <div class="container" style="color: white;
-                        width: 45vh;
-                        transform: translatey(-30%);
-                        transform: translatex(-20%);
-                        background-color:blue;
-                        height: 50%;">
-                        <div class="customer"><label for="CustomerID" style="color: white;
-                        text-align: left;">Customer ID:</label> </div>
-                        <input type="text" id="usr", name= "customer ID">
-                        <br>
-                        <label for="Upload image" style="color: white;">Upload image:</label>
-                        <input name="filePath" type="file" accept=".jpeg,.jpg,.png"/>
-                        <input class="sub" type="submit" value="check"/>
-                        </div>
-                        <img src="{{ file_url }}" alt="">
-                            {{file_url}}
-
-                    </form>
-
-                    <br>
-                    <br>
-                    
-                </div>
-                
-        </center> 
-    </body>     
+                 
+            
+    </body>    
 </html>
 {%endblock%}

@@ -5,6 +5,7 @@
         <html>
           <head>
             <title>Signature Verification Website</title>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
             <style>
               body {
                  margin: 0px;
@@ -77,9 +78,11 @@
                       style="border-radius: 0.5rem;
                       font-family: poppins;">
                         {% csrf_token %}
-                        <i><input type="text" name="username" placeholder= "User Name"></i>
-                        <input type="password" name="password" placeholder="Password">
-                        <input type="submit" value="login">
+                        <div class="placeholder_edit">
+                          <input type="text" name="username" placeholder="User Name">
+                          <input type="password" name="password" placeholder="Password">
+                          <input type="submit" value="login">
+                        </div>
                       </form>
                     </section>
               </div>
